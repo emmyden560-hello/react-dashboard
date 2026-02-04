@@ -1,8 +1,10 @@
-import Layout from "./components/layout"
+import Overview from "./pages/Overview"
 
 function App() {
   return (
-    <Layout />
+    <>
+      <Overview />
+    </>
   )
 }
 

@@ -1,29 +1,120 @@
 @import "tailwindcss";
 
+@theme {
+    --font-sans: "Geist Sans", "Inter", system-ui;
+    --font-mono: "Geist Sans", "JetBrains Mono", monospace;
+
+    --tracking-tight: -0.2em;
+    /* for headings to look premium */
+
+    /* --- The Root (Background) --- */
+    --color-background: var(--background);
+    /* Deepest layer */
+    --color-text-primary: var(--text-primary);
+    /* Deepest layer */
+
+
+    /* --- Semantic Dark Surfaces (Elevation) --- */
+    --color-surface-sidebar: var(--surface-sidebar);
+    /* Layer 0 */
+    --color-surface-card: var(--surface-card);
+    /* Layer 1 (Raised) */
+    --color-surface-popover: var(--surface-popover);
+    /* Layer 2 (Highest) */
+
+
+    /* --- Border & Divider System --- */
+    --color-border-subtle: var(--border-subtle);
+    /* Hard dividers */
+    --color-border-glass: var(--border-glass);
+    /* Transparent borders */
+
+
+    /* --- Primary Brand (Violet/Purple) --- */
+    --color-primary-light: var(--primary-light);
+    /* For icons/badges */
+    --color-primary-main: var(--primary-main);
+    /* Main branding */
+    --color-primary-dark: var(--primary-dark);
+    /* For hover states */
+
+    --color-brand-primary: var(--primary-main);
+
+    /* --- Secondary (Cyan/Sky Blue) --- */
+    --color-secondary-main: var(--secondary-main);
+    /* For secondary metrics */
+
+    /* Custom Transition */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 @layer base {
+    /* :root {
+        --background: oklch(98% 0.015 270);
+        --text-primary: oklch(95% 0.01 270);
+
+        --primary-main: oklch(62% 0.18 270);
+        --primary-dark: oklch(48% 0.17 270);
+        --primary-light: oklch(92% 0.09 270);
+
+        --secondary-main: oklch(78% 0.13 200);
+
+        --border-glass: oklch(0% 0 0 / 6%);
+        --border-subtle: oklch(92% 0.014 270);
+
+        --surface-sidebar: oklch(96.5% 0.012 270);
+        --surface-card: oklch(94.5% 0.018 270);
+        --surface-popover: oklch(92% 0.022 270);
+    } */
+
     :root {
-        --background: 210 40% 98%;
-        --foreground: 222 47% 11%;
+        --background: oklch(12% 0.02 270);
+        --text-primary: oklch(95% 0.01 270);
 
-        --card: 0 0% 100%;
+        --primary-main: oklch(65% 0.22 270);
+        --primary-dark: oklch(45% 0.20 270);
+        --primary-light: oklch(85% 0.15 270);
 
-        --primary: 250 47% 60%;
-        --primary-foreground: 210 40% 98%;
+        --secondary-main: oklch(70% 0.18 200);
 
-        --border: 214 32% 91%;
+        --border-glass: oklch(100% 0 0 / 8%);
+        --border-subtle: oklch(25% 0.03 270);
+
+        --surface-sidebar: oklch(14% 0.03 270);
+        --surface-card: oklch(18% 0.04 270);
+        --surface-popover: oklch(22% 0.05 270);
+    }
+}
+
+@layer utilities {
+    .main {
+        @apply flex-1 min-h-screen;
     }
 
-    .dark {
-        --background: 222 47% 4%;
-        --foreground: 213 31% 91%;
-
-        --card: 222 47% 8%;
-
-        --primary: 250 65% 65%;
-        --primary-foreground: 213 31% 91%;
-
-        --border: 217 33% 20%;
+    .side-bar {
+        @apply px-4 py-4 border-r bg-surface-sidebar border-border-subtle min-h-screen w-64;
     }
+
+    .nav-item {
+        @apply flex items-center gap-3 text-[14px] text-text-primary font-semibold font-sans mb-3 p-2 rounded-full hover:text-primary-main transition-colors duration-300;
+    }
+
+    .active-nav-glow {
+        @apply bg-gradient-to-r from-gray-300 via-gray-300 to-transparent;
+        border-left: 2px solid var(--primary-main);
+    }
+
+    .flex-between {
+        @apply flex justify-between items-center
+    }
+
+}
+
+/* the engineer's way to handle dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+    background-color: var(--background);
 }
 
 *::-webkit-scrollbar {

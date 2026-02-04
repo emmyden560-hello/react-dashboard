@@ -1,16 +1,16 @@
+import { Button } from "./ui/button";
 
 
 const Header = () => {
     return (
-        <div className="min-h-screen w-[640px] lg:w-full">
-            <div className="border-b-1 border-gray-300 shadow-xs">
-                <h1 className="text-3xl px-6 py-4">Overview</h1>
+        <header className="font-sans max-w-[] lg:max-w-[1280px] mx-auto p-6 lg:p-10">
+            <div className="flex items-center gap-4">
+                <input type="text" placeholder="Search" className="w-full p-2 rounded-lg bg-surface-sidebar border border-border-subtle text-text-primary" />
+                <Button className="bg-surface-popover p-2 rounded-lg border border-border-subtle text-text-primary/40">
+                    WIN+K
+                </Button>
             </div>
-
-            <div className="text-4xl px-6 py-6">
-                Dashboard content goes here
-            </div>
-        </div>
+        </header>
     )
 }
 

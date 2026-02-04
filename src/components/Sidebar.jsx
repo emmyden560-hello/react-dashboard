@@ -1,44 +1,70 @@
-import { Bell, Notebook, Package, Settings2 } from "lucide-react";
+import { ArrowLeft, BarChart3, FileText, LayoutDashboard, LogOut, Menu, Settings, User, Users, X } from "lucide-react";
+import { NavLink } from "react-router-dom";
+import { cn } from "../lib/utils";
 
 const navs = [
     {
         name: "Overview",
-        icon: <Package />
+        href: "/",
+        icon: <LayoutDashboard size={20} strokeWidth={1.5} />
     },
     {
         name: "Analytics",
-        icon: <Bell />
+        href: "/analytics",
+        icon: <BarChart3 size={20} strokeWidth={1.5} />
+    },
+    {
+        name: "Users",
+        href: "/users",
+        icon: <Users size={20} strokeWidth={1.5} />
+    },
+    {
+        name: "Reports",
+        href: "/reports",
+        icon: <FileText size={20} strokeWidth={1.5} />
     },
     {
         name: "Settings",
-        icon: <Settings2 />
+        href: "/settings",
+        icon: <Settings size={20} strokeWidth={1.5} />
     }
 ]
 
 
-const Sidebar = () => {
+const Sidebar = ({ className }) => {
+
     return (
-        <>
-            <div className="px-6 py-4 w-[300px] border-r-1 border-gray-300 min-h-screen bg-gray-100">
+        <section className={cn("side-bar", className)}>
+            <div>
                 <div>
-                    <h1 className="flex items-center gap-2 text-3xl font-semibold mt-3 mb-8">
-                        <span><Notebook size={30} /></span>EDashboard
+                    <h1 className="flex-between gap-2 mt-2 mb-5">
+                        <img src="/logo-2.png" alt="logo-2" className="w-10 h-10" />
+                        <ArrowLeft className="hidden md:block text-white/40" />
                     </h1>
                 </div>
 
                 <div>
                     {navs.map((nav, index) => {
                         return (
-                            <div>
-                                <div key={index} className="flex items-center gap-3 font-semibold text-xl mb-3 bg-gray-300 p-2 rounded-full">
-                                    <span>{nav.icon}</span>{nav.name}
-                                </div>
-                            </div>
+                            <NavLink to={nav.href} key={index} className="nav-item">
+                                <span>{nav.icon}</span>{nav.name}
+                            </NavLink>
                         )
                     })}
                 </div>
             </div>
-        </>
+
+            <div className="border-t-1 border-border-subtle">
+                <div className="nav-item">
+                    <User />
+                    Profile
+                </div>
+                <div className="nav-item">
+                    <LogOut />
+                    Logout
+                </div>
+            </div>
+        </section>
     );
 }
 
