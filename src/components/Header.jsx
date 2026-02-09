@@ -28,8 +28,8 @@ const Header = () => {
 
     return (
         <header
-            className="font-sans flex items-center justify-between gap-4 mx-auto py-3 px-3 border-b border-border-subtle bg-background/50 backdrop-blur-md sticky top-0 z-50">
-            <div className="relative w-full max-w-md hidden md:block">
+            className="font-sans flex w-full items-center justify-between gap-3 py-3 px-3 border-b border-border-subtle">
+            <div className="relative w-full">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary w-4 h-4" />
                 <input
                     ref={inputRef}
@@ -52,17 +52,17 @@ const Header = () => {
                 )}
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
                 <NavLink to="/reports">
                     <Button className="relative bg-surface-card border border-border-subtle p-2.5 rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/5 transition-colors">
                         <Bell size={20} />
-                        <span className="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full animate-pulse ring-2 ring-surface-card" />
+                        <span className="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full ring-2 ring-surface-card" />
                     </Button>
                 </NavLink>
 
                 <div className="hidden lg:block pl-2 border-l border-border-subtle">
                     <NavLink to="/profile" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-                        <img src="./favicon.svg.png" alt="profile" className="w-9 h-9 rounded-full bg-surface-card border border-border-subtle" />
+                        <img src="./favicon.svg.png" alt="profile" className="w-12 h-10 rounded-full bg-surface-card border border-border-subtle" />
                     </NavLink>
                 </div>
             </div>

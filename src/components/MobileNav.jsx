@@ -1,7 +1,7 @@
 import { Menu, X } from "lucide-react";
-import Sidebar from "./Sidebar";
 import { cn } from "../lib/utils";
 import { useState } from "react";
+import Sidebar from "./Sidebar";
 
 const MobileNav = () => {
     const [isOpen, setIsOpen] = useState(false);

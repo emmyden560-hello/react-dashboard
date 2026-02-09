@@ -9,7 +9,7 @@ const ActiveNav = () => {
     const activeNav = allnavs.find(nav => nav.href === location.pathname);
 
     return (
-        <div className="mb-8">
+        <div className="mb-6">
             <p className="text-sm text-text-primary/50 tracking-wider">
                 Home {'>'} Dashboard {'>'} <span className="font-bold text-text-primary">{activeNav?.name || "Overview"}</span>
             </p>

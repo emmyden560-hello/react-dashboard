@@ -2,7 +2,6 @@ import { cn } from '@/lib/utils';
 import {
     DollarSign,
     Users,
-    CreditCard,
     Activity,
     ArrowUpRight,
     ArrowDownRight,
@@ -17,7 +16,7 @@ const overcards = [
         icon: DollarSign,
         // Blue/Purple gradient theme
         iconColor: "text-white",
-        iconBg: "bg-gradient-to-br from-blue-500 to-purple-600",
+        iconBg: "bg-emerald-300/50",
         trend: {
             value: "+12%",
             isPositive: true,
@@ -49,8 +48,8 @@ const overcards = [
         iconBg: "bg-yellow-500/15",
         trend: {
             value: "+5%",
-            isPositive: true,
-            text: ""
+            isPositive: false,
+            text: "from last month"
         }
     },
     {
@@ -59,7 +58,7 @@ const overcards = [
         value: '99.9%',
         icon: Activity,
         // Bright Green theme
-        iconColor: "text-green-400",
+        iconColor: "animate-pulse text-green-400",
         iconBg: "bg-green-500/20",
         trend: {
             value: "Uptime",
@@ -71,13 +70,13 @@ const overcards = [
 
 const OverCard = () => {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-1">
             {overcards.map((card) => {
                 return (
                     <div key={card.id} className='overcard group'>
                         {/* Header: Title and Icon */}
                         <div className='flex justify-between items-start'>
-                            <span className='text-text-secondary font-medium text-sm'>{card.title}</span>
+                            <span className='text-text-primary/80 font-medium text-md'>{card.title}</span>
                             <span className={cn('p-2 rounded-lg', card.iconBg)}>
                                 <card.icon size={18} className={cn(card.iconColor)} />
                             </span>
@@ -85,7 +84,7 @@ const OverCard = () => {
 
                         {/* Value */}
                         <div className='mt-2'>
-                            <span className='text-text-primary font-sans font-bold text-3xl tracking-tight'>{card.value}</span>
+                            <span className='text-text-primary font-mono font-bold text-3xl'>{card.value}</span>
                         </div>
 
                         {/* Footer: Trend and Description */}
@@ -94,7 +93,7 @@ const OverCard = () => {
                                 <span className='text-text-secondary'>{card.trend.value}</span>
                             ) : (
                                 <>
-                                    <span className={cn('flex items-center gap-1 font-medium',
+                                    <span className={cn('flex items-center font-medium',
                                         card.trend.isPositive ? 'text-emerald-400' : 'text-red-400'
                                     )}>
                                         {card.trend.isPositive ? <ArrowUpRight size={16} /> : <ArrowDownRight size={16} />}
@@ -105,15 +104,15 @@ const OverCard = () => {
                             )}
 
                             {/* Decorative Graph Placeholder for Revenue */}
-                            {card.hasGraph && (
+                            {/* {card.hasGraph && (
                                 <TrendingUp className="ml-auto text-emerald-500/50 w-12 h-6" />
-                            )}
+                            )} */}
                         </div>
 
                         {/* Decorative Gradient Background for Revenue Only to match image */}
-                        {card.id === 'total-revenue' && (
+                        {/* {card.id === 'total-revenue' && (
                             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/8 to-purple-600/8 pointer-events-none rounded-2xl" />
-                        )}
+                        )} */}
                     </div>
                 )
             })}

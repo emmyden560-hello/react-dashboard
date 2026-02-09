@@ -1,4 +1,4 @@
-import { ArrowBigLeftDashIcon, BarChart3, FileText, LayoutDashboard, LogOut, Settings, User, Users } from "lucide-react";
+import { BarChart3, ChevronsLeftIcon, FileText, LayoutDashboard, LogOut, Settings, User, Users } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { cn } from "../lib/utils";
@@ -53,14 +53,14 @@ const Sidebar = ({ className }) => {
         <>
             <section className={cn(
                 "side-bar", className,
-                isCollapsed ? "!w-16 !py-4" : "!w-54"
+                isCollapsed ? "!w-16 !py-4" : "!w-64"
             )}>
                 <div>
                     <div>
                         <h1 className="flex-between gap-2 mt-2 mb-5">
                             <img src="/logo-2.png" alt="logo-2" className={cn("w-10 h-10", isCollapsed && "hidden")} />
                             <button onClick={toggleSidebar}>
-                                <ArrowBigLeftDashIcon className={cn("text-text-secondary hidden lg:block transition-transform duration-300", isCollapsed && "rotate-180")} />
+                                <ChevronsLeftIcon className={cn("text-text-primary/60 transition-transform duration-300 hidden md:block", isCollapsed && "rotate-180 text-text-primary/80")} />
                             </button>
                         </h1>
                     </div>
@@ -71,7 +71,7 @@ const Sidebar = ({ className }) => {
                                 <NavLink
                                     to={nav.href}
                                     key={index}
-                                    className={({ isActive }) => cn("nav-item", isActive && "nav-item-active")}>
+                                    className={({ isActive }) => cn("nav-item", isCollapsed && "justify-center", isActive && "nav-item-active !px-4")}>
                                     <span>{nav.icon}</span>
                                     {/* Only show the name if not collapsed */}
                                     {!isCollapsed && <span className="transition-opacity duration-300">{nav.name}</span>}
@@ -87,7 +87,7 @@ const Sidebar = ({ className }) => {
                             <NavLink
                                 to={nav.href}
                                 key={index}
-                                className={({ isActive }) => cn("nav-item mt-2", isActive && "nav-item-active")}>
+                                className={({ isActive }) => cn("nav-item mt-2", isCollapsed && "justify-center", isActive && "nav-item-active")}>
                                 <span>{nav.icon}</span>
                                 {/* Only show the name if not collapsed */}
                                 {!isCollapsed && <span className="transition-opacity duration-300">{nav.name}</span>}

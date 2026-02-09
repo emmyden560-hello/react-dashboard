@@ -30,9 +30,6 @@
 
     /* --- Secondary (Cyan/Sky Blue) --- */
     --color-secondary-main: var(--secondary-main);
-
-    /* Custom Transition */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @layer base {
@@ -63,41 +60,25 @@
         --surface-popover: oklch(17% 0.04 260);
 
         /* Additional Colors */
-        --color-accent-green: oklch(60% 0.17 140);
-        --color-accent-yellow: oklch(80% 0.18 80);
-        --color-accent-blue: oklch(65% 0.22 240);
-        --color-accent-red: oklch(60% 0.25 25);
     }
 }
 
 @layer utilities {
-    .main {
-        @apply flex-1 min-h-screen;
-        background-color: var(--background);
-        color: var(--text-primary);
-    }
-
     .side-bar {
-        @apply px-4 py-6 border-r min-h-screen w-64 flex flex-col gap-6;
-        background-color: var(--surface-sidebar);
-        border-color: var(--border-subtle);
+        @apply px-4 py-2 bg-surface-card border-r border-border-subtle min-h-screen flex flex-col;
     }
 
     .nav-item {
-        @apply flex items-center gap-3 text-[14px] font-medium font-sans mb-1 p-3 rounded-xl transition-all duration-300;
-        color: var(--text-secondary);
+        @apply flex gap-3 text-[14px] font-medium font-sans mb-2 p-3 rounded-xl transition-all duration-300;
+
     }
 
     .nav-item:hover {
-        color: var(--text-primary);
-        background-color: oklch(100% 0 0 / 0.05);
+        @apply text-primary-main/80
     }
 
     .nav-item-active {
-        background-color: var(--primary-glow);
-        color: var(--primary-light);
-        border: 1px solid oklch(124 58 237 / 0.3);
-        box-shadow: 0 0 15px var(--primary-glow);
+        @apply border border-primary-glow py-2 bg-border-subtle/50 text-primary-main shadow-sm shadow-primary-main/50 
     }
 
     .flex-between {
@@ -106,55 +87,34 @@
 
     .sug-button {
         @apply hidden lg:block absolute h-8 px-2 font-mono right-4 rounded-md border text-xs pointer-events-none flex items-center justify-center;
-        background-color: var(--surface-card);
-        border-color: var(--border-subtle);
-        color: var(--text-secondary);
     }
 
     /* Base Card Style */
-    .dashboard-card {
-        @apply rounded-2xl border p-6 md:max-w-[320px] lg:max-w-[384px] transition-all duration-300;
-        background-color: var(--surface-card);
-        border-color: var(--border-subtle);
-    }
-
     .overcard {
-        @apply flex flex-col justify-between h-[180px] cursor-pointer transition-all duration-300 relative overflow-hidden;
+        @apply flex flex-col bg-gradient-to-br from-blue-900 to-purple-900 border border-border-subtle rounded-xl p-4 cursor-pointer transition-all duration-300 overflow-hidden;
     }
 
-    .overcard:hover {
-        border-color: oklch(124 58 237 / 0.4);
-        box-shadow: 0 0 20px oklch(124 58 237 / 0.15);
-    }
+    .overcard:hover {}
 
     /* Quick Action Cards */
     .quickcard {
-        @apply flex flex-col justify-center items-center gap-3 cursor-pointer transition-all duration-300 h-[160px];
+        @apply flex mt-2 bg-surface-card border border-border-subtle rounded-xl p-8 flex-col justify-center items-center gap-1 cursor-pointer transition-all duration-300 hover:shadow-[inset_0_0_28px_6px_oklch(8%_0.28_270)];
     }
 
-    .quickcard:hover {
-        background-color: var(--surface-popover);
-        border-color: oklch(124 58 237 / 0.3);
-        box-shadow: 0 0 15px oklch(124 58 237 / 0.1);
-    }
+    .quickcard:hover {}
 
     /* Special "Add New User" Action Card - Purple/Blue Gradient */
-    .quickcard-action {
-        @apply flex flex-col justify-center items-center gap-3 cursor-pointer h-[160px] transition-all;
-        background: linear-gradient(to bottom right, var(--primary-main), oklch(32% 0.25 270));
-        border: none;
-        box-shadow: 0 0 20px oklch(124 58 237 / 0.25);
-    }
-
-    .quickcard-action:hover {
-        box-shadow: 0 0 30px oklch(124 58 237 / 0.35);
-        transform: scale(1.03);
-    }
+    .quickcard-action:hover {}
 
     .card-hover-glow {
         @apply hover:shadow-lg;
         box-shadow: 0 10px 15px -3px oklch(124 58 237 / 0.15);
     }
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text-primary);
 }
 
 /* Scrollbar hiding */
