@@ -1,8 +1,9 @@
-import { ArrowLeft, BarChart3, FileText, LayoutDashboard, LogOut, Menu, Settings, User, Users, X } from "lucide-react";
+import { ArrowBigLeftDashIcon, BarChart3, FileText, LayoutDashboard, LogOut, Settings, User, Users } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 import { cn } from "../lib/utils";
 
-const navs = [
+export const navs = [
     {
         name: "Overview",
         href: "/",
@@ -30,41 +31,72 @@ const navs = [
     }
 ]
 
+export const lownav = [
+    {
+        name: "Profile",
+        href: "/profile",
+        icon: <User size={20} strokeWidth={1.5} />
+    },
+    {
+        name: "Logout",
+        href: "/logout",
+        icon: <LogOut size={20} strokeWidth={1.5} />
+    }
+]
 
 const Sidebar = ({ className }) => {
+    const [isCollapsed, setIsCollapsed] = useState(false);
+
+    const toggleSidebar = () => setIsCollapsed(!isCollapsed);
 
     return (
-        <section className={cn("side-bar", className)}>
-            <div>
+        <>
+            <section className={cn(
+                "side-bar", className,
+                isCollapsed ? "!w-16 !py-4" : "!w-54"
+            )}>
                 <div>
-                    <h1 className="flex-between gap-2 mt-2 mb-5">
-                        <img src="/logo-2.png" alt="logo-2" className="w-10 h-10" />
-                        <ArrowLeft className="hidden md:block text-white/40" />
-                    </h1>
+                    <div>
+                        <h1 className="flex-between gap-2 mt-2 mb-5">
+                            <img src="/logo-2.png" alt="logo-2" className={cn("w-10 h-10", isCollapsed && "hidden")} />
+                            <button onClick={toggleSidebar}>
+                                <ArrowBigLeftDashIcon className={cn("text-text-secondary hidden lg:block transition-transform duration-300", isCollapsed && "rotate-180")} />
+                            </button>
+                        </h1>
+                    </div>
+
+                    <div>
+                        {navs.map((nav, index) => {
+                            return (
+                                <NavLink
+                                    to={nav.href}
+                                    key={index}
+                                    className={({ isActive }) => cn("nav-item", isActive && "nav-item-active")}>
+                                    <span>{nav.icon}</span>
+                                    {/* Only show the name if not collapsed */}
+                                    {!isCollapsed && <span className="transition-opacity duration-300">{nav.name}</span>}
+                                </NavLink>
+                            )
+                        })}
+                    </div>
                 </div>
 
-                <div>
-                    {navs.map((nav, index) => {
+                <div className="mt-auto border-t-1 border-border-subtle">
+                    {lownav.map((nav, index) => {
                         return (
-                            <NavLink to={nav.href} key={index} className="nav-item">
-                                <span>{nav.icon}</span>{nav.name}
+                            <NavLink
+                                to={nav.href}
+                                key={index}
+                                className={({ isActive }) => cn("nav-item mt-2", isActive && "nav-item-active")}>
+                                <span>{nav.icon}</span>
+                                {/* Only show the name if not collapsed */}
+                                {!isCollapsed && <span className="transition-opacity duration-300">{nav.name}</span>}
                             </NavLink>
                         )
                     })}
                 </div>
-            </div>
-
-            <div className="border-t-1 border-border-subtle">
-                <div className="nav-item">
-                    <User />
-                    Profile
-                </div>
-                <div className="nav-item">
-                    <LogOut />
-                    Logout
-                </div>
-            </div>
-        </section>
+            </section>
+        </>
     );
 }
 

@@ -1,25 +1,24 @@
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
 import Sidebar from "./Sidebar";
 import { cn } from "../lib/utils";
+import { useState } from "react";
 
 const MobileNav = () => {
     const [isOpen, setIsOpen] = useState(false);
-
     return (
-        <section className="md:hidden">
+        <section className="lg:hidden">
             <button
                 onClick={() => setIsOpen(true)}
-                className="text-white fixed top-4 left-4 z-50 p-2 bg-surface-sidebar rounded-md border border-border-subtle"
+                className="text-white fixed top-3 left-3 z-50 p-2 bg-surface-sidebar rounded-md border border-border-subtle"
             >
-                <Menu />
+                <Menu className="size-{2px}" />
             </button>
 
             {/* Backdrop */}
             <div
                 onClick={() => setIsOpen(false)}
                 className={cn(
-                    "fixed inset-0 bg-background/60 backdrop-blur-sm z-[100] transition-opacity duration-300",
+                    "fixed inset-0 bg-background/60 backdrop-blur-xs z-[100] transition-opacity duration-300",
                     isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
                 )}
             />
@@ -34,11 +33,11 @@ const MobileNav = () => {
                 <div className="h-full relative">
                     <button
                         onClick={() => setIsOpen(false)}
-                        className="absolute top-4 right-4 text-white/60 hover:text-white"
+                        className="absolute top-7.5 right-4 text-white/60 hover:text-white"
                     >
                         <X size={24} />
                     </button>
-                    <Sidebar className="w-full border-none flex flex-col gap-60" />
+                    <Sidebar className="w-full border-none flex flex-col" />
                 </div>
             </div>
         </section>

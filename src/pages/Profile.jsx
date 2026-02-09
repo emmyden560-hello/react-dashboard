@@ -1,6 +1,6 @@
 import ActiveNav from "@/components/ActiveNav"
 
-const Analytics = () => {
+const Profile = () => {
     return (
         <>
         <ActiveNav />
@@ -8,4 +8,4 @@ const Analytics = () => {
     )
 }
 
-export default Analytics
+export default Profile  

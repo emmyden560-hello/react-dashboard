@@ -5,123 +5,166 @@
     --font-mono: "Geist Sans", "JetBrains Mono", monospace;
 
     --tracking-tight: -0.2em;
-    /* for headings to look premium */
 
     /* --- The Root (Background) --- */
     --color-background: var(--background);
-    /* Deepest layer */
     --color-text-primary: var(--text-primary);
-    /* Deepest layer */
-
+    --color-text-secondary: var(--text-secondary);
 
     /* --- Semantic Dark Surfaces (Elevation) --- */
     --color-surface-sidebar: var(--surface-sidebar);
-    /* Layer 0 */
     --color-surface-card: var(--surface-card);
-    /* Layer 1 (Raised) */
     --color-surface-popover: var(--surface-popover);
-    /* Layer 2 (Highest) */
-
 
     /* --- Border & Divider System --- */
     --color-border-subtle: var(--border-subtle);
-    /* Hard dividers */
-    --color-border-glass: var(--border-glass);
-    /* Transparent borders */
-
+    --color-border-glass: var(--glass);
 
     /* --- Primary Brand (Violet/Purple) --- */
     --color-primary-light: var(--primary-light);
-    /* For icons/badges */
     --color-primary-main: var(--primary-main);
-    /* Main branding */
     --color-primary-dark: var(--primary-dark);
-    /* For hover states */
+    --color-primary-glow: var(--primary-glow);
 
     --color-brand-primary: var(--primary-main);
 
     /* --- Secondary (Cyan/Sky Blue) --- */
     --color-secondary-main: var(--secondary-main);
-    /* For secondary metrics */
 
     /* Custom Transition */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @layer base {
-    /* :root {
-        --background: oklch(98% 0.015 270);
-        --text-primary: oklch(95% 0.01 270);
-
-        --primary-main: oklch(62% 0.18 270);
-        --primary-dark: oklch(48% 0.17 270);
-        --primary-light: oklch(92% 0.09 270);
-
-        --secondary-main: oklch(78% 0.13 200);
-
-        --border-glass: oklch(0% 0 0 / 6%);
-        --border-subtle: oklch(92% 0.014 270);
-
-        --surface-sidebar: oklch(96.5% 0.012 270);
-        --surface-card: oklch(94.5% 0.018 270);
-        --surface-popover: oklch(92% 0.022 270);
-    } */
-
     :root {
-        --background: oklch(12% 0.02 270);
-        --text-primary: oklch(95% 0.01 270);
+        /* Very Dark Navy/Purple Background */
+        --background: oklch(7% 0.03 260);
 
-        --primary-main: oklch(65% 0.22 270);
-        --primary-dark: oklch(45% 0.20 270);
-        --primary-light: oklch(85% 0.15 270);
+        /* White and Light Gray Text */
+        --text-primary: oklch(98% 0.01 0);
+        --text-secondary: oklch(65% 0 0);
 
-        --secondary-main: oklch(70% 0.18 200);
+        /* Vibrant Purple/Blue Primary */
+        --primary-main: oklch(58% 0.25 270);
+        --primary-dark: oklch(42% 0.28 270);
+        --primary-light: oklch(73% 0.17 270);
+        --primary-glow: oklch(58% 0.25 270 / 0.3);
 
-        --border-glass: oklch(100% 0 0 / 8%);
-        --border-subtle: oklch(25% 0.03 270);
+        /* Cyan/Sky Blue Secondary */
+        --secondary-main: oklch(70% 0.2 200);
 
-        --surface-sidebar: oklch(14% 0.03 270);
-        --surface-card: oklch(18% 0.04 270);
-        --surface-popover: oklch(22% 0.05 270);
+        /* Subtle Glass Effect & Borders */
+        --border-glass: oklch(100% 0 0 / 0.08);
+        --border-subtle: oklch(100% 0 0 / 0.1);
+
+        /* Dark Blue/Purple Surfaces */
+        --surface-sidebar: oklch(10% 0.04 260);
+        --surface-card: oklch(14% 0.03 260);
+        --surface-popover: oklch(17% 0.04 260);
+
+        /* Additional Colors */
+        --color-accent-green: oklch(60% 0.17 140);
+        --color-accent-yellow: oklch(80% 0.18 80);
+        --color-accent-blue: oklch(65% 0.22 240);
+        --color-accent-red: oklch(60% 0.25 25);
     }
 }
 
 @layer utilities {
     .main {
         @apply flex-1 min-h-screen;
+        background-color: var(--background);
+        color: var(--text-primary);
     }
 
     .side-bar {
-        @apply px-4 py-4 border-r bg-surface-sidebar border-border-subtle min-h-screen w-64;
+        @apply px-4 py-6 border-r min-h-screen w-64 flex flex-col gap-6;
+        background-color: var(--surface-sidebar);
+        border-color: var(--border-subtle);
     }
 
     .nav-item {
-        @apply flex items-center gap-3 text-[14px] text-text-primary font-semibold font-sans mb-3 p-2 rounded-full hover:text-primary-main transition-colors duration-300;
+        @apply flex items-center gap-3 text-[14px] font-medium font-sans mb-1 p-3 rounded-xl transition-all duration-300;
+        color: var(--text-secondary);
     }
 
-    .active-nav-glow {
-        @apply bg-gradient-to-r from-gray-300 via-gray-300 to-transparent;
-        border-left: 2px solid var(--primary-main);
+    .nav-item:hover {
+        color: var(--text-primary);
+        background-color: oklch(100% 0 0 / 0.05);
+    }
+
+    .nav-item-active {
+        background-color: var(--primary-glow);
+        color: var(--primary-light);
+        border: 1px solid oklch(124 58 237 / 0.3);
+        box-shadow: 0 0 15px var(--primary-glow);
     }
 
     .flex-between {
-        @apply flex justify-between items-center
+        @apply flex justify-between items-center;
     }
 
+    .sug-button {
+        @apply hidden lg:block absolute h-8 px-2 font-mono right-4 rounded-md border text-xs pointer-events-none flex items-center justify-center;
+        background-color: var(--surface-card);
+        border-color: var(--border-subtle);
+        color: var(--text-secondary);
+    }
+
+    /* Base Card Style */
+    .dashboard-card {
+        @apply rounded-2xl border p-6 md:max-w-[320px] lg:max-w-[384px] transition-all duration-300;
+        background-color: var(--surface-card);
+        border-color: var(--border-subtle);
+    }
+
+    .overcard {
+        @apply flex flex-col justify-between h-[180px] cursor-pointer transition-all duration-300 relative overflow-hidden;
+    }
+
+    .overcard:hover {
+        border-color: oklch(124 58 237 / 0.4);
+        box-shadow: 0 0 20px oklch(124 58 237 / 0.15);
+    }
+
+    /* Quick Action Cards */
+    .quickcard {
+        @apply flex flex-col justify-center items-center gap-3 cursor-pointer transition-all duration-300 h-[160px];
+    }
+
+    .quickcard:hover {
+        background-color: var(--surface-popover);
+        border-color: oklch(124 58 237 / 0.3);
+        box-shadow: 0 0 15px oklch(124 58 237 / 0.1);
+    }
+
+    /* Special "Add New User" Action Card - Purple/Blue Gradient */
+    .quickcard-action {
+        @apply flex flex-col justify-center items-center gap-3 cursor-pointer h-[160px] transition-all;
+        background: linear-gradient(to bottom right, var(--primary-main), oklch(32% 0.25 270));
+        border: none;
+        box-shadow: 0 0 20px oklch(124 58 237 / 0.25);
+    }
+
+    .quickcard-action:hover {
+        box-shadow: 0 0 30px oklch(124 58 237 / 0.35);
+        transform: scale(1.03);
+    }
+
+    .card-hover-glow {
+        @apply hover:shadow-lg;
+        box-shadow: 0 10px 15px -3px oklch(124 58 237 / 0.15);
+    }
 }
 
-/* the engineer's way to handle dark mode */
-@custom-variant dark (&:where(.dark, .dark *));
+/* Scrollbar hiding */
+@layer base {
+    *::-webkit-scrollbar {
+        display: none !important;
+    }
 
-body {
-    background-color: var(--background);
-}
-
-*::-webkit-scrollbar {
-    display: none !important;
-}
-
-* {
-    -ms-overflow-style: none !important;
-    scrollbar-width: none !important;
+    * {
+        -ms-overflow-style: none !important;
+        scrollbar-width: none !important;
+    }
 }
