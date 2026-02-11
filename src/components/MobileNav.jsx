@@ -9,9 +9,9 @@ const MobileNav = () => {
         <section className="lg:hidden">
             <button
                 onClick={() => setIsOpen(true)}
-                className="text-white fixed top-3 left-3 z-50 p-2 bg-surface-sidebar rounded-md border border-border-subtle"
+                className="text-white p-2 bg-surface-sidebar rounded-md border border-border-subtle"
             >
-                <Menu className="size-{2px}" />
+                <Menu className="size-5" />
             </button>
 
             {/* Backdrop */}

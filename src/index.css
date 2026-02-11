@@ -35,7 +35,8 @@
 @layer base {
     :root {
         /* Very Dark Navy/Purple Background */
-        --background: oklch(7% 0.03 260);
+        --background:oklch(7% 0.03 260);
+            --backgroun: oklch(22.482% 0.10622 318.73 / 0.521);
 
         /* White and Light Gray Text */
         --text-primary: oklch(98% 0.01 0);
@@ -65,7 +66,7 @@
 
 @layer utilities {
     .side-bar {
-        @apply px-4 py-2 bg-surface-card border-r border-border-subtle min-h-screen flex flex-col;
+        @apply px-4 py-2 bg-surface-card border-r border-border-subtle min-h-screen lg:flex lg:flex-col;
     }
 
     .nav-item {
@@ -91,20 +92,21 @@
 
     /* Base Card Style */
     .overcard {
-        @apply flex flex-col bg-gradient-to-br from-blue-900 to-purple-900 border border-border-subtle rounded-xl p-4 cursor-pointer transition-all duration-300 overflow-hidden;
+        @apply flex flex-col bg-gradient-to-br from-[oklch(58%_0.25_270/0.3)] via-[oklch(17%_0.04_260)] to-[oklch(22.482%_0.10622_318.73/0.521)] border border-border-subtle rounded-xl p-4 cursor-pointer transition-all duration-300 overflow-hidden;
     }
 
-    .overcard:hover {}
+    .overcard:hover {
+        @apply shadow-[inset_0_0_28px_6px_oklch(8%_0.28_270)];
+    }
 
     /* Quick Action Cards */
     .quickcard {
-        @apply flex mt-2 bg-surface-card border border-border-subtle rounded-xl p-8 flex-col justify-center items-center gap-1 cursor-pointer transition-all duration-300 hover:shadow-[inset_0_0_28px_6px_oklch(8%_0.28_270)];
+        @apply flex mt-2 bg-surface-card border border-border-subtle rounded-xl p-8 flex-col justify-center items-center gap-1 cursor-pointer transition-all duration-300;
     }
 
-    .quickcard:hover {}
-
-    /* Special "Add New User" Action Card - Purple/Blue Gradient */
-    .quickcard-action:hover {}
+    .quickcard:hover {
+        @apply -translate-y-1 transition-transform shadow-[inset_0_0_28px_6px_oklch(8%_0.28_270)];
+    }
 
     .card-hover-glow {
         @apply hover:shadow-lg;

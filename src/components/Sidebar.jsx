@@ -60,7 +60,7 @@ const Sidebar = ({ className }) => {
                         <h1 className="flex-between gap-2 mt-2 mb-5">
                             <img src="/logo-2.png" alt="logo-2" className={cn("w-10 h-10", isCollapsed && "hidden")} />
                             <button onClick={toggleSidebar}>
-                                <ChevronsLeftIcon className={cn("text-text-primary/60 transition-transform duration-300 hidden md:block", isCollapsed && "rotate-180 text-text-primary/80")} />
+                                <ChevronsLeftIcon className={cn("text-text-primary/60 transition-transform duration-300 hidden lg:block", isCollapsed && "rotate-180 text-text-primary/80")} />
                             </button>
                         </h1>
                     </div>

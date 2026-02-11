@@ -88,7 +88,7 @@ const OverCard = () => {
                         </div>
 
                         {/* Footer: Trend and Description */}
-                        <div className='mt-auto flex items-center gap-2 text-sm'>
+                        <div className='mt-1 flex items-center gap-1 text-sm'>
                             {card.id === 'system-health' ? (
                                 <span className='text-text-secondary'>{card.trend.value}</span>
                             ) : (
@@ -102,17 +102,7 @@ const OverCard = () => {
                                     <span className='text-text-secondary text-xs'>{card.trend.text}</span>
                                 </>
                             )}
-
-                            {/* Decorative Graph Placeholder for Revenue */}
-                            {/* {card.hasGraph && (
-                                <TrendingUp className="ml-auto text-emerald-500/50 w-12 h-6" />
-                            )} */}
                         </div>
-
-                        {/* Decorative Gradient Background for Revenue Only to match image */}
-                        {/* {card.id === 'total-revenue' && (
-                            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/8 to-purple-600/8 pointer-events-none rounded-2xl" />
-                        )} */}
                     </div>
                 )
             })}

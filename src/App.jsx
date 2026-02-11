@@ -7,7 +7,6 @@ function App() {
   return (
     <>
       <div className="flex gap-12 lg:gap-0 border border-border-subtle">
-        <MobileNav />
         <Sidebar className="hidden lg:flex flex-col" />
         <div className="flex-1">
           <Header />
